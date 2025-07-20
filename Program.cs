@@ -148,7 +148,7 @@ foreach (var stream in streams)
 
 // group, compute and print final results
 
-var groups = results.GroupBy(x => x.Item1).ToArray();
+var groups = results.GroupBy(x => x.Item1).OrderBy(x => x.Key).ToArray();
 
 Console.Write('{');
 
