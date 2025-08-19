@@ -47,7 +47,7 @@ Base Board Information
 
 ### Command
 ```
-dotnet build -c Release 3 measurements.txt
+dotnet run -c Release 3 measurements.txt
 ```
 
 ### Results
