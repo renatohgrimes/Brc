@@ -6,9 +6,11 @@ It was inspired by https://github.com/gunnarmorling/1brc
 
 And by https://github.com/praeclarum/1brc (.NET Edition)
 
-I wanted to take on the challenge over the weekend, so I wrote the entire solution without using unsafe code and aimed to make it as fast as possible. 🙂
+I wanted to take on the challenge but I wrote the entire solution without using unsafe code and aimed to make it as fast as possible. 🙂
 
 To reduce allocations, I avoided using strings and instead used CRC32 hashes to map city names to weather data structs and parallelized file reading by file segments.
+
+Generating a flamegraph with dotnet-trace made me write a custom temperature string parser.
 
 ## Running
 
@@ -32,6 +34,15 @@ OS: Ubuntu 24.04.2 LTS x86_64
 Kernel: 6.14.0-24-generic
 CPU: Intel i5-7200U (4) @ 3.100GHz
 SSD: KINGSTON SA400S37240G
+Base Board Information
+        Manufacturer: ASUSTeK COMPUTER INC.
+        Product Name: X556URK
+*-memory
+       description: System Memory
+       slot: System board or motherboard
+       size: 12GiB
+     *-bank:0
+          description: SODIMM DDR4 Synchronous 2133 MHz (0.5 ns)
 ```
 
 ### Command
@@ -42,19 +53,19 @@ dotnet build -c Release 3 measurements.txt
 ### Results
 ```
 Test #1
-real    2m43.172s
-user    7m2.995s
-sys     0m6.705s
+real    1m16.066s
+user    2m53.211s
+sys     0m5.129s
 
 Test #2
-real    2m45.129s
-user    7m11.776s
-sys     0m5.802s
+real    1m17.286s
+user    2m58.425s
+sys     0m6.054s
 
 Test #3
-real    2m42.847s
-user    6m48.140s
-sys     0m7.403s
+real    1m29.032s
+user    2m55.316s
+sys     0m6.442s
 
 ```
 
